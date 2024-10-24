@@ -1,3 +1,5 @@
+drop database consultorioDB;
+create database consultorioDB;
 use consultorioDB;
 CREATE TABLE cliente (
     id_cliente INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,8 +30,8 @@ CREATE TABLE agendamento (
     id_funcionario INT,
 	data_agendamento DATETIME NOT NULL,
     status ENUM('confirmado', 'cancelado') NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES usuario(id_cliente),
-    FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) on delete set null,
+    FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario) on delete set null
 );
 CREATE TABLE estoque (
 	id_item INT PRIMARY KEY AUTO_INCREMENT,
