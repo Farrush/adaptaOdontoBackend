@@ -34,5 +34,5 @@ export async function alterarLogin(login, id){
 }
 export async function deletarLogin(id){
     const [dados] = await dLogin(id)
-    return dados
+    return dados.affectedRows
 }
