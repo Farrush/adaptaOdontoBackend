@@ -12,7 +12,7 @@ endpoints.post('/login/auth', async (req, res)=> {
         res.status(400).send({erro: err.message})
     }
 })
-endpoints.post('/login', async (req, res) => {
+endpoints.post('/login', autenticar, async (req, res) => {
     try{
         res.send({novoId: await novoLogin(req.body)})
     }catch(err){

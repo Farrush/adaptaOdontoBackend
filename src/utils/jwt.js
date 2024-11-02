@@ -3,7 +3,7 @@ const KEY = "=illasc3ndasth3sunintoth3night&?"
 
 export function geraToken(usuario){
   if(usuario == undefined)
-    throw new Error("Dados não inseridos")
+    throw new Error("Verifique se o email e senha estão corretos.")
   return jwt.sign(usuario, KEY)
 }
 
