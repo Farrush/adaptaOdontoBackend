@@ -1,16 +1,8 @@
-import { uLogin, iLogin, dLogin, authLogin, sLogin, sLogins } from "../repositories/login.repository.js";
+import { uLogin, iLogin, dLogin, authLogin } from "../repositories/login.repository.js";
 import validarEmail from '../validators/email.validator.js'
 import validarNome from "../validators/nome.validator.js";
 import validarSenha from '../validators/senha.validator.js'
 
-export async function buscarLogins(){
-    const [dados] = await sLogins()
-    return dados
-}
-export async function buscarLogin(id){
-    const [login] = await sLogin(id)
-    return login[0]
-}
 export async function autenticarLogin(email, senha){
     validarEmail(email)
     validarSenha(senha)
