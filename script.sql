@@ -25,3 +25,4 @@ create table agendamento(
     status enum('Confirmado', 'Cancelado', 'Concluído') not null,
     foreign key (id_paciente) references paciente(id_paciente) on delete set null
 );
+insert into login (nome, email, senha) values ('Roger D. Gol', 'rdg@gmail.com', sha2('12345678', 256));
