@@ -11,6 +11,11 @@ export async function sPaciente(id){
 
     return await con.query(sql, [id])
 }
+export async function sPacienteRG(rg){
+    const sql = "select id_paciente id, nome, rg, telefone from paciente where rg = ?"
+
+    return await con.query(sql, [rg])
+}
 export async function iPaciente(paciente){
     const sql = "insert into paciente (nome, rg, telefone) values (?, ?, ?)"
 

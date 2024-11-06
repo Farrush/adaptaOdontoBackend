@@ -1,4 +1,4 @@
-import { uPaciente, iPaciente, dPaciente, sPaciente, sPacientes } from "../repositories/paciente.repository.js";
+import { uPaciente, iPaciente, dPaciente, sPaciente, sPacientes, sPacienteRG } from "../repositories/paciente.repository.js";
 import validarNome from "../validators/nome.validator.js";
 import validarRG from '../validators/rg.validator.js'
 
@@ -10,7 +10,11 @@ export async function buscarPaciente(id){
     const [paciente] = await sPaciente(id)
     return paciente[0]
 }
-
+export async function buscarPacienteRG(rg){
+    validarRG(rg)
+    const [paciente] = await sPacienteRG(rg)
+    return paciente[0]
+}
 export async function novoPaciente(paciente){
     validarNome(paciente.nome)
     validarRG(paciente.rg)
