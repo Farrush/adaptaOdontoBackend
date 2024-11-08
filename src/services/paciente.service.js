@@ -1,7 +1,7 @@
 import { uPaciente, iPaciente, dPaciente, sPaciente, sPacientes, sPacienteRG } from "../repositories/paciente.repository.js";
 import validarNome from "../validators/nome.validator.js";
 import validarRG from '../validators/rg.validator.js'
-
+import validarTelefone from '../validators/telefone.validador.js'
 export async function buscarPacientes(){
     const [dados] = await sPacientes()
     return dados
@@ -18,12 +18,14 @@ export async function buscarPacienteRG(rg){
 export async function novoPaciente(paciente){
     validarNome(paciente.nome)
     validarRG(paciente.rg)
+    validarTelefone(paciente.telefone)
     const [dados] = await iPaciente(paciente)
     return dados.insertId
 }
 export async function alterarPaciente(paciente, id){
     validarNome(paciente.nome)
     validarRG(paciente.rg)
+    validarTelefone(paciente.telefone)
     paciente = {...paciente, id}
     const [dados] = await uPaciente(paciente)
     return dados.affectedRows
