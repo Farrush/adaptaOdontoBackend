@@ -1,10 +1,18 @@
 import { Router } from "express";
 import { autenticar } from "../utils/jwt.js";
-import { buscarAgendamentos, buscarAgendamento, novoAgendamento, alterarAgendamento, deletarAgendamento } from "../services/agendamento.service.js";
+import { buscarAgendamentosDeHoje,buscarAgendamentos, buscarAgendamento, novoAgendamento, alterarAgendamento, deletarAgendamento } from "../services/agendamento.service.js";
 const endpoints  = Router()
 endpoints.get('/agendamento', autenticar, async (req, res)=> {
     try{
         res.send(await buscarAgendamentos())
+    }catch(err){
+        res.status(400).send({erro: err.message})
+    }
+})
+endpoints.get('/agendamento/hoje', autenticar, async (req, res)=> {
+    try{
+        res.send(await buscarAgendamentosDeHoje())
+
     }catch(err){
         res.status(400).send({erro: err.message})
     }

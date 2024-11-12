@@ -1,7 +1,7 @@
 import con from './connection.js'
 
 export async function sAgendas(){
-    const sql = "select id_agendamento id, id_paciente paciente, dt_agendamento data, hr_agendamento hora, status, tratamento from agendamento"
+    const sql = "select id_agendamento id, id_paciente paciente, dt_agendamento data, hr_agendamento hora, status, tratamento from agendamento order by dt_agendamento desc"
 
     return await con.query(sql)
 }
@@ -11,6 +11,12 @@ export async function sAgenda(id){
     " tratamento from agendamento where id_agendamento = ?"
 
     return await con.query(sql, [id])
+}
+export async function sAgendaHoje(){
+    const sql = "select id_agendamento id, id_paciente paciente, dt_agendamento data, hr_agendamento hora, status,"+
+    " tratamento from agendamento where dt_agendamento = curdate() order by hr_agendamento asc"
+
+    return await con.query(sql, [])
 }
 export async function iAgenda(agendamento){
     const sql = "insert into agendamento (id_paciente, dt_agendamento, hr_agendamento, status, tratamento) values (?,?,?,?,?)"

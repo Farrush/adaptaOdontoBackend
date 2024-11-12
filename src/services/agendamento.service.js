@@ -1,10 +1,14 @@
-import { sAgenda, sAgendas, iAgenda, uAgenda, dAgenda } from "../repositories/agendamento.repository.js";
+import { sAgenda, sAgendas, iAgenda, uAgenda, dAgenda, sAgendaHoje } from "../repositories/agendamento.repository.js";
 import validarData from "../validators/data.validator.js";
 import validarHora from "../validators/hora.validator.js";
 import validarStatus from '../validators/status.validator.js'
 import validarPaciente from "../validators/paciente.validator.js";
 export async function buscarAgendamentos(){
     const [dados] = await sAgendas()
+    return dados
+}
+export async function buscarAgendamentosDeHoje(){
+    const [dados] = await sAgendaHoje()
     return dados
 }
 export async function buscarAgendamento(id){
